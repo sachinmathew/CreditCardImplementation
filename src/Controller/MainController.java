@@ -6,14 +6,23 @@ import View.MainMenu;
 import Utility.UpdateAccountDetails;
 
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /*
 Main class which controls entire flow
  */
 public class MainController {
-
-    public static void main(String[] args) {
+    public static Logger logger = Logger.getLogger("MyLog");
+    public static FileHandler fh;
+    public static void main(String[] args) throws IOException {
+        fh = new FileHandler("Logfile.log");
+        logger.addHandler(fh);
+        SimpleFormatter formatter = new SimpleFormatter();
+        fh.setFormatter(formatter);
         displayMenus();
     }
 
@@ -25,7 +34,9 @@ public class MainController {
                 String cardNumber = CardRegistrationController.registerCardMember(details);
                 Account newAccount = MainModel.getAccountDetails(cardNumber);
                 MainMenu.displayAccount(newAccount);
+                logger.info( "Account created " + newAccount.getCard().getCardNumber());
                 displayMenus();
+
                 break;
             case 2:
                 List<String> amountToBeCharged = MainMenu.displayChargeMenu();
@@ -38,6 +49,7 @@ public class MainController {
                 else{
 
                     MainMenu.displayTransactionSuccessfull();
+                    logger.info( amountToBeCharged.get(1) + " charged on account " + amountToBeCharged.get(0) );
                 }
                 displayMenus();
                 break;
@@ -52,6 +64,7 @@ public class MainController {
                 else{
 
                     MainMenu.displayTransactionSuccessfull();
+                    logger.info( amountToBeCharged.get(1) + " paid on account " + amountToBeCharged.get(0) );
                 }
                 displayMenus();
                 break;
@@ -62,6 +75,7 @@ public class MainController {
                     for(int i = 1;i <= days;i++){
                         MainModel.setDay(MainModel.getDay() + 1);
                         if(MainModel.getDay()%30 == 0){
+                            logger.info( "Interests updated" );
                             for (Account acc: MainModel.accountList) {
                                 UpdateAccountDetails.updateDetails(acc);
                             }

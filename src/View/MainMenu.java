@@ -1,6 +1,7 @@
 package View;
 
 import Model.Account;
+import Model.MainModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class MainMenu {
     public static int displayMainMenu(){
         int choice = 0;
         System.out.println( "Enter a valid choice" );
+        System.out.println( "Day "+ MainModel.getDay() );
         System.out.println("*********Main Menu*********");
         System.out.println("1.Create an Account");
         System.out.println("2.Add charges");
