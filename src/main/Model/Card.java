@@ -1,6 +1,6 @@
-package Model;
+package main.Model;
 
-import Utility.GenerateNumber;
+import main.Utility.GenerateNumber;
 
 public class Card {
     String cardNumber;

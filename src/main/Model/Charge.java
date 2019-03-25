@@ -1,4 +1,4 @@
-package Model;
+package main.Model;
 public class Charge  {
     double amount;
     int day;

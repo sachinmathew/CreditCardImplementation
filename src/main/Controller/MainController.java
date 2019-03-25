@@ -1,9 +1,9 @@
-package Controller;
+package main.Controller;
 
-import Model.Account;
-import Model.MainModel;
-import View.MainMenu;
-import Utility.UpdateAccountDetails;
+import main.Model.Account;
+import main.Model.MainModel;
+import main.View.MainMenu;
+import main.Utility.UpdateAccountDetails;
 
 
 import java.io.IOException;

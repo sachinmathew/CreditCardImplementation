@@ -1,7 +1,7 @@
-package View;
+package main.View;
 
-import Model.Account;
-import Model.MainModel;
+import main.Model.Account;
+import main.Model.MainModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,10 +76,15 @@ public class MainMenu {
         return details;
     }
     static int jumpNdays(){
-        System.out.println("Enter number of days to jump must be number > 0");
+        System.out.println("Enter number of days to jump");
         int days = -1;
         while (days < 0){
             days = sc.nextInt();
+            if(days < 0){
+                printInvalidInput();
+                System.out.println("Enter number of days to jump");
+            }
+
         }
         return days;
     }

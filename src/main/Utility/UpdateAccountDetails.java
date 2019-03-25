@@ -1,8 +1,8 @@
-package Utility;
+package main.Utility;
 
-import Model.Account;
-import Model.Charge;
-import Model.MainModel;
+import main.Model.Account;
+import main.Model.Charge;
+import main.Model.MainModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,21 +11,18 @@ Cla0ss which cleans up transactions and updates interests and account balance at
  */
 public class UpdateAccountDetails {
     static double curr = 0;
-    static int day = 0;
+
     public static void updateDetails(Account account){
         List<Charge> chargesList = account.getCharges();
         double apr = account.getCard().getApr();
         double temp = 0;
-
+        int day = 0;
         boolean flag = true;
         double currInterest = 0;
         if(chargesList.size() < 1){
-            if(day == 1)
-                account.setTotalOutstandingBalance(account.getTotalOutstandingBalance() +
-                        (account.getTotalOutstandingBalance()*(apr/100)/365) * (MainModel.getDay() - day + 1));
-            else
-                account.setTotalOutstandingBalance(account.getTotalOutstandingBalance() +
-                        (account.getTotalOutstandingBalance()*(apr/100)/365) * (MainModel.getDay() - day));
+            account.setTotalOutstandingBalance(account.getTotalOutstandingBalance() +
+                        (account.getTotalOutstandingBalance()*(apr/100)/365) * 30);
+
             return;
         }
         for (Charge charge:chargesList) {

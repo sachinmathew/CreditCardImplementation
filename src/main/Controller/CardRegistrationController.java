@@ -1,7 +1,7 @@
-package Controller;
+package main.Controller;
 
-import Model.Account;
-import Model.MainModel;
+import main.Model.Account;
+import main.Model.MainModel;
 
 import java.util.List;
 
